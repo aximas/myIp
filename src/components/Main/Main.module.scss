@@ -13,20 +13,25 @@
     backdrop-filter: blur(40px);
 
     &__block {
+        width: 100%;
         opacity: .8;
         color: #ffffff;
-
+        text-align: center;
     }
 
     &__description {
-        width: 45%;
-        text-align: right;
+        font-size: 28px;
+        @media screen and (max-width: 735px) {
+            font-size: 22px;
+        }
     }
 
     &__value {
-        width: 52%;
-        font-weight: 600;
-        text-align: left;
+        font-weight: 700;
+        font-size: 42px;
+        @media screen and (max-width: 735px) {
+            font-size: 28px;
+        }
     }
 
     &__button {
