@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import Main from "./Main";
-import {setIpAC} from "../../redux/main-redux";
+import {getFullAC, setIpAC} from "../../redux/main-redux";
 
 let mapStateToProps = (state) => {
        return {
@@ -11,7 +11,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        setMyIp: (myIp) => dispatch(setIpAC(myIp))
+        setMyIp: (myIp) => dispatch(setIpAC(myIp)),
+        getFullData: (fullData) => dispatch(getFullAC(fullData))
     }
 };
 

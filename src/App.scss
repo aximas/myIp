@@ -1,0 +1,19 @@
+* {
+ padding: 0;
+ margin: 0;
+ box-sizing: border-box;
+}
+
+.app {
+ display: flex;
+ height: 100vh;
+ background-size: cover;
+ background-repeat: no-repeat;
+}
+
+.row {
+ width: 100%;
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+}
