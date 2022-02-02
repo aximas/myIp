@@ -17,7 +17,6 @@ const Main = (props) => {
         if (!props.myIp[0].show_full) {
             axios.get(`https://ipapi.co/${props.myIp[0].yourIp}/json`)
                 .then(response => {
-                    console.log(response.data)
                     props.getFullData([{fullData: response.data, yourIp: response.data.ip, show_full: true}])
                 })
         }
