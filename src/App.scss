@@ -4,6 +4,10 @@
  box-sizing: border-box;
 }
 
+body {
+ overflow-y: scroll;
+}
+
 .app {
  display: flex;
  padding: 0 20px;

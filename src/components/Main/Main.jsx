@@ -4,44 +4,47 @@ import '../../App.scss';
 import style from './Main.module.scss'
 import {ListContainer} from "../List/ListContainer";
 
-const Main = (props) => {
+class Main extends React.Component {
 
-    if (props.myIp.length === 0) {
+    componentDidMount() {
         axios.get('https://api.ipify.org/?format=json')
             .then(response => {
-                props.setMyIp([{yourIp: response.data.ip, show_full: false}])
+                this.props.setMyIp([{yourIp: response.data.ip, show_full: false}])
             })
     }
 
-    let getFullInfo = () => {
-        if (!props.myIp[0].show_full) {
-            axios.get(`https://ipapi.co/${props.myIp[0].yourIp}/json`)
+    getFullInfo = () => {
+        if (!this.props.myIp[0].show_full) {
+            axios.get(`https://ipapi.co/${this.props.myIp[0].yourIp}/json`)
                 .then(response => {
-                    props.getFullData([{fullData: response.data, yourIp: response.data.ip, show_full: true}])
+                    this.props.getFullData([{fullData: response.data, yourIp: response.data.ip, show_full: true}])
                 })
         }
     }
 
-    return (
-        <div className={style.main}>
-            <div className="row">
-                <p className={`${style.main__block} ${style.main__description}`}>
-                    Your IP:
-                </p>
-                <p className={`${style.main__block} ${style.main__value}`}>
-                    {props.myIp.map(item => item.yourIp)}
-                </p>
-            </div>
-            <button className={style.main__button} onClick={getFullInfo}>Get full info</button>
-            <div className="row">
-                {(props.myIp.length) ?
-                    ((props.myIp[0].show_full) ?
-                        <ListContainer /> :
-                        '')
-                    : ''}
-            </div>
-        </div>
-    )
+    render() {
+        return (
+                <div className={style.main}>
+                    <div className="row">
+                        <p className={`${style.main__block} ${style.main__description}`}>
+                            Your IP:
+                        </p>
+                        <p className={`${style.main__block} ${style.main__value}`}>
+                            {this.props.myIp.map(item => item.yourIp)}
+                        </p>
+                    </div>
+                    <button className={style.main__button} onClick={this.getFullInfo}>Get full info</button>
+                    <div className="row">
+                        {(this.props.myIp.length) ?
+                            ((this.props.myIp[0].show_full) ?
+                                <ListContainer /> :
+                                '')
+                            : ''}
+                    </div>
+                </div>
+        )
+    }
+
 }
 
 export default Main;
