@@ -1,8 +1,10 @@
 const SET_IP = 'SET_IP';
 const GET_FULL = 'GET_FULL';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
-    data: []
+    data: [],
+    isFetching: false
 }
 
 
@@ -18,13 +20,19 @@ const mainReducer = (state = initialState, action) => {
                 ...state, data: [...action.fullData]
             }
         }
+        case TOGGLE_IS_FETCHING: {
+            return {
+                ...state, isFetching: action.isFetching
+            }
+        }
         default:
             return state;
 
     }
 }
 
-export const setIpAC = (myIp) => ({type: SET_IP, myIp});
-export const getFullAC = (fullData) => ({type: GET_FULL, fullData})
+export const setMyIp = (myIp) => ({type: SET_IP, myIp});
+export const getFullData = (fullData) => ({type: GET_FULL, fullData});
+export const isToggleFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 
 export default mainReducer;
